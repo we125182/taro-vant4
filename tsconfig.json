@@ -17,10 +17,7 @@
     "rootDir": ".",
     "jsx": "preserve",
     "allowJs": true,
-    "resolveJsonModule": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ]
+    "resolveJsonModule": true
   },
   "include": ["./src", "./types/*.d.ts", "components.d.ts"],
   "compileOnSave": false

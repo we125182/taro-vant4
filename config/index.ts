@@ -3,6 +3,8 @@ import { VantResolver } from '@vant/auto-import-resolver'
 import ComponentsPlugin from 'unplugin-vue-components/webpack'
 import postcssRename from './plugins/postcss-rename'
 
+const resolve = (dir: string) => path.resolve(__dirname, '..', dir)
+
 const config = {
   projectName: 'taro-3.6',
   date: '2023-11-26',
@@ -15,10 +17,14 @@ const config = {
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [
-    path.join(__dirname, 'plugins/vant.ts'),
+    resolve('config/plugins/vant.ts'),
     '@tarojs/plugin-html'
   ],
   defineConstants: {
+  },
+  // 目录/文件别名
+  alias: {
+    '@': resolve('src')
   },
   copy: {
     patterns: [
@@ -30,8 +36,6 @@ const config = {
   compiler: {
     type: 'webpack5',
     prebundle: {
-      // enable: false,
-      // force: true,
       exclude: ['vant']
     }
   },
@@ -40,6 +44,16 @@ const config = {
   },
   mini: {
     webpackChain (chain) {
+      // vant样式不进行px转换
+      const needPxPluginRules = ['normalCss', 'less']
+      needPxPluginRules.forEach(ruleName => {
+        chain.module.rule(ruleName).oneOf('0').use('2').tap(options => {
+          options.postcssOptions.plugins.push(require('postcss-transform-px')({
+            exclude: /[\\/]node_modules[\\/]vant/i
+          }))
+          return options
+        })
+      })
 
       // vant按需引入
       chain.plugin('components').use(function() {
@@ -58,9 +72,7 @@ const config = {
     },
     postcss: {
       pxtransform: {
-        enable: false,
-        config: {
-        }
+        enable: false
       },
       url: {
         enable: true,
@@ -75,7 +87,10 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    lessLoaderOption: {
+      additionalData: `@import "~@/styles/val.less";@import "~@/styles/function.less";`
+    },
   },
   h5: {
     publicPath: '/',

@@ -26,18 +26,6 @@ dependencies:
   '@tarojs/plugin-platform-h5':
     specifier: 3.6.20
     version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
-  '@tarojs/plugin-platform-jd':
-    specifier: 3.6.20
-    version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
-  '@tarojs/plugin-platform-qq':
-    specifier: 3.6.20
-    version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
-  '@tarojs/plugin-platform-swan':
-    specifier: 3.6.20
-    version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
-  '@tarojs/plugin-platform-tt':
-    specifier: 3.6.20
-    version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
   '@tarojs/plugin-platform-weapp':
     specifier: 3.6.20
     version: 3.6.20(postcss@8.4.31)(vue@3.3.9)
@@ -112,6 +100,9 @@ devDependencies:
   postcss:
     specifier: ^8.4.18
     version: 8.4.31
+  postcss-transform-px:
+    specifier: ^2.0.0
+    version: registry.npmjs.org/postcss-transform-px@2.0.0(postcss@8.4.31)
   style-loader:
     specifier: 1.3.0
     version: 1.3.0(webpack@5.89.0)
@@ -2470,6 +2461,7 @@ packages:
       - postcss
       - supports-color
       - vue
+    dev: true
 
   /@tarojs/plugin-platform-qq@3.6.20(postcss@8.4.31)(vue@3.3.9):
     resolution: {integrity: sha512-xWaMpHWG1nt4IZVD3XSQYqutpwm2FdRp9dV0yMLn9i1ULwMaao2325b+ZftkjLDWxxF+Kq7VNtcGgBK3T/uPTQ==}
@@ -2486,6 +2478,7 @@ packages:
       - postcss
       - supports-color
       - vue
+    dev: true
 
   /@tarojs/plugin-platform-swan@3.6.20(postcss@8.4.31)(vue@3.3.9):
     resolution: {integrity: sha512-1PoJR69E0UjOFj3KiETK3qc93LvDCme0inLsyx5/RIoLjBGuBuAclJtGWNjFClj9WNWKNwooh97lpuyD9OcMzw==}
@@ -2502,6 +2495,7 @@ packages:
       - postcss
       - supports-color
       - vue
+    dev: true
 
   /@tarojs/plugin-platform-tt@3.6.20(postcss@8.4.31)(vue@3.3.9):
     resolution: {integrity: sha512-/821/9MaMnCy1j6OGI8srVDWqjlaNSH8EuERojBYFCbEaPbfQCZr+85BEHIO/T2Ijq12Wl4IgftgkGLbQFn3LQ==}
@@ -2518,6 +2512,7 @@ packages:
       - postcss
       - supports-color
       - vue
+    dev: true
 
   /@tarojs/plugin-platform-weapp@3.6.20(postcss@8.4.31)(vue@3.3.9):
     resolution: {integrity: sha512-ryxsbsAmULe58+2yZ/qg7tjrKqjhlCxQShmtzXrPRQyO7vUH1L5lgT5gWUdnYbTX8WR3zq9yeimjMUdfE3E+Nw==}
@@ -13405,3 +13400,14 @@ packages:
       toposort: 2.0.2
       type-fest: 2.19.0
     dev: false
+
+  registry.npmjs.org/postcss-transform-px@2.0.0(postcss@8.4.31):
+    resolution: {integrity: sha512-pJTE1bVP/s4L7tJzZBv9o2tz5/FzzCpI3msInSUriAPBSaA+1+F2UQYFbOx/vCZqSeeAjV1wCW1zgGnS4qYXUg==, tarball: https://registry.npmjs.org/postcss-transform-px/-/postcss-transform-px-2.0.0.tgz}
+    id: registry.npmjs.org/postcss-transform-px/2.0.0
+    name: postcss-transform-px
+    version: 2.0.0
+    peerDependencies:
+      postcss: ^8.0.0
+    dependencies:
+      postcss: 8.4.31
+    dev: true

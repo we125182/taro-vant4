@@ -1,7 +1,15 @@
-export default function (ctx, options) {
+import { IPluginContext } from '@tarojs/service'
+
+export default function (ctx: IPluginContext) {
   const miniTagMap = {
-    'button': ['button'],
-    'field': ['input', 'textarea'],
+    button: ['button'],
+    field: ['input', 'textarea', 'label'],
+    form: ['form'],
+    radio: ['radio'],
+    checkbox: ['checkbox'],
+    image: ['image'],
+    search: ['input'],
+    empty: ['image']
   }
 
   // 收集使用到的小程序组件

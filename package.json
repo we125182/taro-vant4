@@ -10,11 +10,12 @@
   },
   "scripts": {
     "dev:weapp": "npm run build:weapp -- --watch",
+    "dev:alipay": "npm run build:alipay -- --watch",
+    "dev:h5": "npm run build:h5 -- --watch",
     "build:weapp": "taro build --type weapp",
     "build:alipay": "taro build --type alipay",
     "build:h5": "taro build --type h5",
-    "dev:alipay": "npm run build:alipay -- --watch",
-    "dev:h5": "npm run build:h5 -- --watch"
+    "lint": "eslint --ext .ts,.js,.vue src"
   },
   "browserslist": [
     "last 3 versions",
@@ -35,9 +36,13 @@
     "@tarojs/runtime": "3.6.20",
     "@tarojs/shared": "3.6.20",
     "@tarojs/taro": "3.6.20",
+    "@vant/area-data": "^1.5.1",
+    "@vant/icons": "^3.0.2",
+    "@vant/use": "^1.6.0",
     "pinia": "^2.1.7",
     "vant": "^4.8.0",
-    "vue": "^3.3.9"
+    "vue": "^3.3.9",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",

@@ -7,7 +7,7 @@ export default function(opts = { ':root': 'page' }) {
         if (keys.includes(rule.selector)) {
           rule.selector = rule.selector.replace(rule.selector, opts[rule.selector])
         } else if (rule.selector === '.h5-input,.h5-button,.h5-textarea') {
-          rule.remove()
+          // rule.remove()
         }
       }
     }

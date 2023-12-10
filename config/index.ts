@@ -18,16 +18,6 @@ const config = defineConfig({
   sourceRoot: 'src',
   outputRoot: `dist/${process.env.TARO_ENV}`,
   plugins: [
-    ['@tarojs/plugin-inject', {
-      thirdPartyComponents: {
-        'van-loading': {
-          type: "'spinner'"
-        },
-        'demo-nav': {
-          icon: "'arrow'"
-        }
-      }
-    }],
     // 收集vant组件中使用到的原生组件
     resolve('config/plugins/vant.ts'),
     ['@tarojs/plugin-html', {
@@ -75,32 +65,26 @@ const config = defineConfig({
       // })
 
       chain.module.rule('vue').use('vueLoader').tap(options => {
+        // TODO:为vant组件添加默认值
         options.compilerOptions.nodeTransforms.push((node, context) => {
-          if (node.tag === 'demo-nav') {
-            const icon = node.props.find(prop => prop.name === 'icon')
-            if (icon) return
-            // const { column, line, offset } = node.loc.start
-            // const tagLength = node.tag.length + 2
-            const source = 'icon="arrow"'
-            // const sourceLength = source.length
-            // const start = { line, column: column + tagLength, offset: offset + tagLength }
-            const start = { line: 1, column: 1, offset: 0 }
-            node.props.push({
-              type: 6,
-              name: 'icon',
-              loc: {
-                start,
-                // end: { line, column: start.column + sourceLength, offset: start.offset + sourceLength },
-                end: start,
-                source
-              },
-              value: {
-                content: 'arrow',
-                type: 2
-              }
-            })
-            context.replaceNode(node)
-          }
+          // if (node.tag === 'demo-nav') {
+          //   const icon = node.props.find(prop => prop.name === 'icon')
+          //   if (icon) return
+          //   const source = 'icon="arrow"'
+          //   node.props.push({
+          //     type: 6,
+          //     name: 'icon',
+          //     loc: {
+          //       start: node.loc.start,
+          //       source
+          //     },
+          //     value: {
+          //       content: 'arrow',
+          //       type: 2
+          //     }
+          //   })
+          //   context.replaceNode(node)
+          // }
         })
         return options
       })

@@ -1,8 +1,7 @@
 import path from 'path'
 import { VantResolver } from '@vant/auto-import-resolver'
 import ComponentsPlugin from 'unplugin-vue-components/webpack'
-import postcssRename from './plugins/postcss-rename'
-import { defineConfig } from '@tarojs/cli'
+import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 
 const resolve = (dir: string) => path.resolve(__dirname, '..', dir)
 
@@ -28,17 +27,14 @@ const config = defineConfig({
       }
     }]
   ],
-  defineConstants: {
-  },
+  defineConstants: {},
   // 目录/文件别名
   alias: {
     '@': resolve('src')
   },
   copy: {
-    patterns: [
-    ],
-    options: {
-    }
+    patterns: [],
+    options: {}
   },
   framework: 'vue3',
   compiler: {
@@ -51,65 +47,16 @@ const config = defineConfig({
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
   mini: {
-    commonChunks: ['runtime', 'vendors', 'taro', 'common', 'vant'],
+    commonChunks(chunks) {
+      // 为了解决h5端vant组件样式问题，将vant组件样式单独打包
+      chunks.push('vant')
+      return chunks
+    },
     webpackChain (chain) {
-      // vant样式不进行px转换
-      // const needPxPluginRules = ['normalCss', 'less']
-      // needPxPluginRules.forEach(ruleName => {
-      //   chain.module.rule(ruleName).oneOf('0').use('2').tap(options => {
-      //     options.postcssOptions.plugins.push(require('postcss-transform-px')({
-      //       exclude: /[\\/]node_modules[\\/]vant/i
-      //     }))
-      //     return options
-      //   })
-      // })
-
-      chain.module.rule('vue').use('vueLoader').tap(options => {
-        // TODO:为vant组件添加默认值
-        options.compilerOptions.nodeTransforms.push((node, context) => {
-          // if (node.tag === 'demo-nav') {
-          //   const icon = node.props.find(prop => prop.name === 'icon')
-          //   if (icon) return
-          //   const source = 'icon="arrow"'
-          //   node.props.push({
-          //     type: 6,
-          //     name: 'icon',
-          //     loc: {
-          //       start: node.loc.start,
-          //       source
-          //     },
-          //     value: {
-          //       content: 'arrow',
-          //       type: 2
-          //     }
-          //   })
-          //   context.replaceNode(node)
-          // }
-        })
-        return options
-      })
-
       // vant按需引入
       chain.plugin('components').use(function() {
         return ComponentsPlugin({ resolvers: [VantResolver()] })
       })
-
-      // 修复vant样式:root选择器不支持的问题 :root => page
-      chain.module.rule('normalCss').oneOf('0').use('2').tap(options => {
-        options.postcssOptions.plugins.push(postcssRename())
-        return options
-      })
-
-      // 避免vant样式被拆分导致样式优先级错误问题
-      chain.optimization.get('splitChunks').cacheGroups.vant = {
-        name: 'vant',
-        type: 'css/mini-extract',
-        test: /[\\/]vant[\\/]es[\\/].+\.css$/,
-        chunks: 'all',
-        priority: 110,
-        minChunks: 1
-      }
-
       /**
        * 输出webpack配置
        */
@@ -165,7 +112,6 @@ const config = defineConfig({
       additionalData: `@import "~@/styles/val.less";@import "~@/styles/function.less";`
     },
     webpackChain (chain) {
-
       // vant按需引入
       chain.plugin('components').use(function() {
         return ComponentsPlugin({ resolvers: [VantResolver()] })
@@ -174,7 +120,7 @@ const config = defineConfig({
   }
 })
 
-module.exports = function (merge) {
+export default function (merge: (...args: UserConfigExport[]) => UserConfigExport) {
   if (process.env.NODE_ENV === 'development') {
     return merge({}, config, require('./dev'))
   }

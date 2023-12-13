@@ -100,14 +100,14 @@ onMounted(preloadImage);
   background-color: var(--van-background-2);
 
   .van-pull-refresh {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 50PX);
   }
 
   .doge {
-    width: 140px;
-    height: 72px;
-    margin-top: 8px;
-    border-radius: 4px;
+    width: 140PX;
+    height: 72PX;
+    margin-top: 8PX;
+    border-radius: 4PX;
   }
 
   p {

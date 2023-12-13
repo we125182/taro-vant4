@@ -90,10 +90,10 @@ const t = useTranslate({
   }
 
   .van-col {
-    margin-bottom: 10px;
+    margin-bottom: 10PX;
     color: var(--van-white);
-    font-size: 13px;
-    line-height: 30px;
+    font-size: 13PX;
+    line-height: 30PX;
     text-align: center;
     background-clip: content-box;
 

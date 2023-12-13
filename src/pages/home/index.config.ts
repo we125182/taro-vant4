@@ -1,6 +1,6 @@
 export default {
   navigationStyle: 'custom',
-  transparentTitle: 'always',
-  titlePenetrate: 'YES',
+  // transparentTitle: 'always',
+  // titlePenetrate: 'YES',
   navigationBarTitleText: '',
 }

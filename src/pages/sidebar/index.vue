@@ -74,10 +74,10 @@ const onChange = (index: number) => showToast(`${t('title')} ${index + 1}`);
   }
 
   &-title {
-    margin-bottom: 16px;
+    margin-bottom: 16PX;
     color: var(--van-text-color-2);
     font-weight: normal;
-    font-size: 14px;
+    font-size: 14PX;
   }
 }
 </style>

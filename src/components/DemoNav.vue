@@ -65,7 +65,7 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: var(--van-doc-background-3);
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5PX 5PX rgba(0, 0, 0, 0.1);
 
   &__title {
     flex: 1;

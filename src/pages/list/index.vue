@@ -126,9 +126,9 @@ const onRefresh = (index: number) => {
 
   .page-desc {
     margin: 0;
-    padding: 5px 0;
+    padding: 5PX 0;
     color: var(--van-gray-7);
-    font-size: 14px;
+    font-size: 14PX;
     text-align: center;
 
     &--text {
@@ -136,7 +136,7 @@ const onRefresh = (index: number) => {
     }
 
     &--option {
-      margin: 12px;
+      margin: 12PX;
     }
   }
 

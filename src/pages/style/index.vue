@@ -4,7 +4,7 @@ import { useTranslate } from '@/utils';
 
 const t = useTranslate({
   'zh-CN': {
-    hairline: '1px 边框',
+    hairline: '1PX 边框',
     ellipsis: '文字省略',
     animation: '动画',
     toggle: '切换动画',
@@ -64,10 +64,10 @@ const animate = (newName: string) => {
 .demo-style {
   .van-ellipsis,
   .van-multi-ellipsis--l2 {
-    max-width: 300px;
+    max-width: 300PX;
     margin-left: var(--van-padding-md);
-    font-size: 14px;
-    line-height: 18px;
+    font-size: 14PX;
+    line-height: 18PX;
   }
 
   .van-ellipsis {
@@ -75,11 +75,11 @@ const animate = (newName: string) => {
   }
 
   .van-hairline--top {
-    height: 30px;
+    height: 30PX;
     background-color: var(--van-background-2);
 
     &::after {
-      top: 5px;
+      top: 5PX;
     }
   }
 
@@ -87,11 +87,11 @@ const animate = (newName: string) => {
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 100px;
-    height: 100px;
-    margin: -50px 0 0 -50px;
+    width: 100PX;
+    height: 100PX;
+    margin: -50PX 0 0 -50PX;
     background-color: var(--van-blue);
-    border-radius: 8px;
+    border-radius: 8PX;
     animation-duration: .3s;
   }
 }

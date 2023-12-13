@@ -224,7 +224,7 @@ const checkedResultChange = (value: string[]) => {
 <style lang="less">
 .demo-checkbox {
   .van-checkbox {
-    margin: 0 0 8px 20px;
+    margin: 0 0 8PX 20PX;
   }
 
   .van-cell {
@@ -234,7 +234,7 @@ const checkedResultChange = (value: string[]) => {
   }
 
   img {
-    height: 20px;
+    height: 20PX;
   }
 
   &-buttons {
@@ -246,13 +246,13 @@ const checkedResultChange = (value: string[]) => {
   }
 
   .van-doc-demo-block__title {
-    margin-top: -8px;
+    margin-top: -8PX;
   }
 }
 
 .divider {
-  margin: 20px;
-  height: 1px;
+  margin: 20PX;
+  height: 1PX;
   background: #ccc;
 }
 </style>

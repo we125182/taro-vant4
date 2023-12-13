@@ -26,7 +26,7 @@ const t = useTranslate({
       :min-date="minDate"
       :max-date="maxDate"
       :default-date="minDate"
-      :style="{ height: '500px' }"
+      :style="{ height: '500PX' }"
     />
   </demo-block>
 </template>

@@ -93,7 +93,7 @@ const onChange = (value: number) => showToast(t('toastContent', value));
 
 <style lang="less">
 .demo-rate {
-  padding-bottom: 20px;
+  padding-bottom: 20PX;
   background-color: var(--van-background-2);
 
   .van-rate {

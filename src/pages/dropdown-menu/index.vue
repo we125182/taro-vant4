@@ -83,7 +83,7 @@ const onConfirm = () => {
             <van-switch v-model="switch2" />
           </template>
         </van-cell>
-        <div style="padding: 5px 16px">
+        <div style="padding: 5PX 16px">
           <van-button
             type="primary"
             block

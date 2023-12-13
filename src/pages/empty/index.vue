@@ -73,8 +73,8 @@ const active = ref('error');
   background: var(--van-background-2);
 
   .bottom-button {
-    width: 160px;
-    height: 40px;
+    width: 160PX;
+    height: 40PX;
   }
 }
 </style>

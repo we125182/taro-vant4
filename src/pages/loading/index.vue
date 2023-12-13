@@ -74,7 +74,7 @@ const t = useTranslate({
 .demo-loading {
   .van-loading {
     display: inline-block;
-    margin: 5px 0 5px 20px;
+    margin: 5PX 0 5PX 20PX;
 
     &--vertical {
       display: inline-flex;

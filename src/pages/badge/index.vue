@@ -107,17 +107,17 @@ const t = useTranslate({
   }
 
   .child {
-    width: 40px;
-    height: 40px;
+    width: 40PX;
+    height: 40PX;
     background: var(--van-gray-2);
-    border-radius: 4px;
+    border-radius: 4PX;
   }
 
   .badge-icon {
     display: block;
     margin-left: 0;
-    font-size: 10px;
-    line-height: 16px;
+    font-size: 10PX;
+    line-height: 16PX;
   }
 }
 </style>

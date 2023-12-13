@@ -80,16 +80,16 @@ const t = useTranslate({
 <style lang="less">
 .demo-notice-bar {
   .van-notice-bar:not(:first-of-type) {
-    margin-top: 4px;
+    margin-top: 4PX;
   }
 
   .van-doc-demo-block__title {
-    padding-top: 24px;
+    padding-top: 24PX;
   }
 
   .notice-swipe {
-    height: 40px;
-    line-height: 40px;
+    height: 40PX;
+    line-height: 40PX;
   }
 }
 </style>

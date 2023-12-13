@@ -188,8 +188,8 @@ const t = useTranslate({
   }
 
   .notice-swipe {
-    height: 40px;
-    line-height: 40px;
+    height: 40PX;
+    line-height: 40PX;
   }
 }
 </style>

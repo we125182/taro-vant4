@@ -132,10 +132,10 @@ const toggleAll = () => {
 <style lang="less">
 .demo-collapse {
   .van-icon-question-o {
-    margin-left: 5px;
+    margin-left: 5PX;
     color: var(--van-blue);
-    font-size: 15px;
-    vertical-align: -3px;
+    font-size: 15PX;
+    vertical-align: -3PX;
   }
 
   &-buttons {

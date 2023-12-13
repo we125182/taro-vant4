@@ -105,7 +105,7 @@ const fullPage = ref(false);
 <style lang="less">
 .demo-watermark-wrapper {
   position: relative;
-  height: 150px;
+  height: 150PX;
   background-color: var(--van-background-2);
   padding: var(--van-padding-md);
 }

@@ -120,7 +120,7 @@ const onClickBeforeClose = () => {
   img {
     box-sizing: border-box;
     width: 100%;
-    padding: 25px 20px 0;
+    padding: 25PX 20PX 0;
   }
 }
 </style>

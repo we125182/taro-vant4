@@ -36,7 +36,7 @@ const setActiveTab = () => {
 </script>
 
 <template>
-  <van-button style="margin: 10px 0" type="primary" @click="setActiveTab">
+  <van-button style="margin: 10PX 0" type="primary" @click="setActiveTab">
     {{ t('btnText') + activeTab }}
   </van-button>
   <van-picker-group

@@ -59,13 +59,13 @@ const componentImageList = [cdnURL('apple-8.jpeg'), cdnURL('apple-7.jpeg')];
   div[lazy] {
     box-sizing: border-box;
     width: 100%;
-    height: 250px;
+    height: 250PX;
     margin-bottom: var(--van-padding-md);
     padding: var(--van-padding-md);
     background-color: white;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    border-radius: 12px;
+    border-radius: 12PX;
   }
 
   .van-doc-demo-block__title,

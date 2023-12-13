@@ -30,9 +30,9 @@ const rate = ref(4);
 const slider = ref(50);
 const themeVars = {
   rateIconFullColor: '#07c160',
-  sliderBarHeight: '4px',
-  sliderButtonWidth: '20px',
-  sliderButtonHeight: '20px',
+  sliderBarHeight: '4PX',
+  sliderButtonWidth: '20PX',
+  sliderButtonHeight: '20PX',
   sliderActiveBackground: '#07c160',
   buttonPrimaryBackground: '#07c160',
   buttonPrimaryBorderColor: '#07c160',
@@ -96,10 +96,10 @@ const themeVars = {
 <style lang="less">
 .demo-collapse {
   .van-icon-question-o {
-    margin-left: 5px;
+    margin-left: 5PX;
     color: var(--van-blue);
-    font-size: 15px;
-    vertical-align: -3px;
+    font-size: 15PX;
+    vertical-align: -3PX;
   }
 }
 </style>

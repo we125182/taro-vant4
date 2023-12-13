@@ -45,7 +45,7 @@ const t = useTranslate({
   background: var(--van-background-2);
 
   .van-highlight {
-    padding: 0 16px;
+    padding: 0 16PX;
   }
 
   .custom-class {

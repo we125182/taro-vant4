@@ -63,9 +63,9 @@ const align = ref('center');
       <van-radio name="end">end</van-radio>
       <van-radio name="baseline">baseline</van-radio>
     </van-radio-group>
-    <van-space :align="align" style="padding: 16px; background: #f3f2f5">
+    <van-space :align="align" style="padding: 16PX; background: #f3f2f5">
       <van-button type="primary">{{ align }}</van-button>
-      <div style="padding: 40px 20px; background: #fff">Block</div>
+      <div style="padding: 40PX 20PX; background: #fff">Block</div>
     </van-space>
   </demo-block>
 

@@ -79,7 +79,7 @@ const currentPage4 = ref(1);
 .demo-pagination {
   .van-pagination {
     width: 100%;
-    margin: 5px 0;
+    margin: 5PX 0;
   }
 
   .van-doc-demo-block {

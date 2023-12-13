@@ -153,7 +153,7 @@ const isTest = process.env.NODE_ENV === 'test';
 
 <style lang="less">
 .demo-number-keyboard {
-  padding-bottom: 300px;
+  padding-bottom: 300PX;
 
   .van-button {
     margin-left: var(--van-padding-md);

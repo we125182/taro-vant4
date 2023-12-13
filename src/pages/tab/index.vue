@@ -178,12 +178,12 @@ const beforeChange = (name: number) => {
   margin-bottom: 80vh;
 
   .van-tab .van-icon {
-    margin-right: 5px;
-    vertical-align: -2px;
+    margin-right: 5PX;
+    vertical-align: -2PX;
   }
 
   .van-tab__panel {
-    padding: 24px 20px;
+    padding: 24PX 20PX;
     background: var(--van-background-2);
   }
 

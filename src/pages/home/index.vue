@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="van-doc-theme-light">
     <demo-section>
       <demo-home></demo-home>
     </demo-section>

@@ -97,13 +97,13 @@ const onChange = (index: number) => showToast(t('message') + index);
 
 <style lang="less">
 .demo-swipe {
-  padding-bottom: 30px;
+  padding-bottom: 30PX;
 
   .van-swipe {
     &-item {
       color: var(--van-white);
-      font-size: 20px;
-      line-height: 150px;
+      font-size: 20PX;
+      line-height: 150PX;
       text-align: center;
 
       &:nth-child(even) {
@@ -119,8 +119,8 @@ const onChange = (index: number) => showToast(t('message') + index);
       display: block;
       box-sizing: border-box;
       width: 100%;
-      height: 240px;
-      padding: 30px 60px;
+      height: 240PX;
+      padding: 30PX 60PX;
       background-color: var(--van-white);
       pointer-events: none;
     }
@@ -128,17 +128,17 @@ const onChange = (index: number) => showToast(t('message') + index);
 
   &--vertical {
     .van-swipe-item {
-      line-height: 200px;
+      line-height: 200PX;
     }
   }
 
   .custom-indicator {
     position: absolute;
-    right: 5px;
-    bottom: 5px;
-    padding: 2px 5px;
+    right: 5PX;
+    bottom: 5PX;
+    padding: 2PX 5PX;
     color: var(--van-white);
-    font-size: 12px;
+    font-size: 12PX;
     background: rgba(0, 0, 0, 0.1);
   }
 }

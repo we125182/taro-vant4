@@ -277,10 +277,10 @@ const onSelect = (action: { text: string }) => showToast(action.text);
 <style lang="less">
 .demo-popover {
   &-refer {
-    width: 60px;
-    height: 60px;
+    width: 60PX;
+    height: 60PX;
     background-color: var(--van-blue);
-    border-radius: 8px;
+    border-radius: 8PX;
   }
 
   .van-popover__wrapper {
@@ -289,15 +289,15 @@ const onSelect = (action: { text: string }) => showToast(action.text);
 
   .van-field {
     width: auto;
-    margin: 0 12px;
+    margin: 0 12PX;
     overflow: hidden;
-    border-radius: 8px;
+    border-radius: 8PX;
   }
 
   &-box {
     display: flex;
     justify-content: center;
-    margin: 110px 0;
+    margin: 110PX 0;
 
     .van-popover__wrapper {
       margin-left: 0;

@@ -50,7 +50,7 @@ const t = useTranslate({
 
   <demo-block :title="t('customStyle')">
     <van-divider
-      :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16px' }"
+      :style="{ borderColor: '#1989fa', color: '#1989fa', padding: '0 16PX' }"
     >
       {{ t('text') }}
     </van-divider>

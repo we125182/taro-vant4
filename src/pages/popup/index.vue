@@ -60,7 +60,7 @@ const showDisplayEvents = ref(false);
 <template>
   <demo-block card :title="t('basicUsage')">
     <van-cell :title="t('buttonBasic')" is-link @click="showBasic = true" />
-    <van-popup v-model:show="showBasic" :style="{ padding: '64px' }" :duration="0.3">
+    <van-popup v-model:show="showBasic" :style="{ padding: '64PX' }" :duration="0.3">
       {{ t('content') }}
     </van-popup>
   </demo-block>
@@ -156,7 +156,7 @@ const showDisplayEvents = ref(false);
       v-model:show="showRoundCornerCenter"
       round
       position="center"
-      :style="{ padding: '64px' }"
+      :style="{ padding: '64PX' }"
     >
       {{ t('content') }}
     </van-popup>
@@ -210,7 +210,7 @@ const showDisplayEvents = ref(false);
     <van-popup
       v-model:show="showGetContainer"
       teleport="body"
-      :style="{ padding: '64px' }"
+      :style="{ padding: '64PX' }"
     />
   </demo-block>
 </template>

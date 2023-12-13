@@ -148,7 +148,7 @@ const reduce = () => {
   }
 
   .van-button {
-    margin: var(--van-padding-md) 0 0 10px;
+    margin: var(--van-padding-md) 0 0 10PX;
 
     &:first-of-type {
       margin-left: var(--van-padding-md);

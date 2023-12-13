@@ -162,19 +162,19 @@ const inactiveIcon = cdnURL('user-inactive.png');
 <style lang="less">
 .demo-radio {
   &-group {
-    padding: 0 16px;
+    padding: 0 16PX;
 
     .van-radio {
-      margin-bottom: 8px;
+      margin-bottom: 8PX;
     }
   }
 
   img {
-    height: 20px;
+    height: 20PX;
   }
 
   .van-doc-demo-block__title {
-    margin-top: -8px;
+    margin-top: -8PX;
   }
 }
 </style>

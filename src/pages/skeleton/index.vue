@@ -49,7 +49,7 @@ const show = ref(false);
       <template #template>
         <div :style="{ display: 'flex', width: '100%' }">
           <van-skeleton-image />
-          <div :style="{ flex: 1, marginLeft: '16px' }">
+          <div :style="{ flex: 1, marginLeft: '16PX' }">
             <van-skeleton-paragraph row-width="60%" />
             <van-skeleton-paragraph />
             <van-skeleton-paragraph />
@@ -74,25 +74,25 @@ const show = ref(false);
     padding: 0 var(--van-padding-md);
 
     .demo-content {
-      padding-top: 6px;
+      padding-top: 6PX;
 
       h3 {
         margin: 0;
-        font-size: 18px;
-        line-height: 20px;
+        font-size: 18PX;
+        line-height: 20PX;
       }
 
       p {
-        margin: 13px 0 0;
-        font-size: 14px;
-        line-height: 20px;
+        margin: 13PX 0 0;
+        font-size: 14PX;
+        line-height: 20PX;
       }
     }
 
     img {
       flex-shrink: 0;
-      width: 32px;
-      height: 32px;
+      width: 32PX;
+      height: 32PX;
       margin-right: var(--van-padding-md);
     }
   }

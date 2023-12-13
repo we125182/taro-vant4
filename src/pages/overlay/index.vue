@@ -66,10 +66,10 @@ const showZIndex = ref(false);
   }
 
   .block {
-    width: 120px;
-    height: 120px;
+    width: 120PX;
+    height: 120PX;
     background-color: var(--van-background-2);
-    border-radius: 4px;
+    border-radius: 4PX;
   }
 }
 </style>

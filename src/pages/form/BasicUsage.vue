@@ -60,7 +60,7 @@ const onFailed = (errorInfo: {
         />
       </van-cell-group>
 
-      <div style="margin: 16px 16px 0">
+      <div style="margin: 16PX 16PX 0">
         <van-button round block type="primary" native-type="submit">
           {{ t('submit') }}
         </van-button>

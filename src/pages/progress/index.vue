@@ -71,15 +71,15 @@ const reduce = () => {
 <style lang="less">
 .demo-progress {
   .van-progress {
-    margin: 20px 16px;
+    margin: 20PX 16PX;
 
     &:first-of-type {
-      margin-top: 5px;
+      margin-top: 5PX;
     }
   }
 
   .van-button {
-    margin: var(--van-padding-md) 0 0 10px;
+    margin: var(--van-padding-md) 0 0 10PX;
 
     &:first-of-type {
       margin-left: var(--van-padding-md);

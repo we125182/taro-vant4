@@ -80,7 +80,7 @@ const onChange = (value: string) => showToast(t('text') + value);
   </demo-block>
 
   <demo-block :title="t('vertical')">
-    <div :style="{ height: '150px', paddingLeft: '30px' }">
+    <div :style="{ height: '150PX', paddingLeft: '30PX' }">
       <van-slider v-model="value8" vertical @change="onChange" />
       <van-slider
         v-model="value9"
@@ -98,7 +98,7 @@ const onChange = (value: string) => showToast(t('text') + value);
   user-select: none;
 
   .van-doc-demo-block {
-    padding: 0 var(--van-padding-md) 20px;
+    padding: 0 var(--van-padding-md) 20PX;
   }
 
   .van-doc-demo-block__title {
@@ -106,13 +106,13 @@ const onChange = (value: string) => showToast(t('text') + value);
   }
 
   .custom-button {
-    width: 26px;
+    width: 26PX;
     color: #fff;
-    font-size: 10px;
-    line-height: 18px;
+    font-size: 10PX;
+    line-height: 18PX;
     text-align: center;
     background-color: var(--van-primary-color);
-    border-radius: 100px;
+    border-radius: 100PX;
   }
 }
 </style>

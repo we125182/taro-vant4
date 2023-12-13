@@ -81,11 +81,11 @@ const t = useTranslate({
 
 <style lang="less">
 .demo-text-ellipsis {
-  font-size: 15px;
+  font-size: 15PX;
   background-color: var(--van-background-2);
 
   .van-text-ellipsis {
-    padding: 0 16px;
+    padding: 0 16PX;
   }
 }
 </style>

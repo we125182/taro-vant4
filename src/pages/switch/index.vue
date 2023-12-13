@@ -99,10 +99,10 @@ const onUpdateValue = (checked: boolean) => {
     display: flex;
     width: 100%;
     justify-content: center;
-    font-size: 18px;
+    font-size: 18PX;
 
     .van-icon {
-      line-height: 32px;
+      line-height: 32PX;
     }
 
     .van-icon-success {

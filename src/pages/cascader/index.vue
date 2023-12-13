@@ -315,8 +315,8 @@ const onFinish = (
 
 <style lang="less">
 .current-level {
-  font-size: 14px;
-  padding: 16px 16px 0;
+  font-size: 14PX;
+  padding: 16PX 16PX 0;
   color: var(--van-gray-6);
 }
 </style>

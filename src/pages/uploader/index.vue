@@ -222,9 +222,9 @@ const fileList6 = ref([{ url: cdnURL('leaf.jpeg') }]);
     bottom: 0;
     box-sizing: border-box;
     width: 100%;
-    padding: 4px;
+    padding: 4PX;
     color: #fff;
-    font-size: 12px;
+    font-size: 12PX;
     text-align: center;
     background: rgba(0, 0, 0, 0.3);
   }

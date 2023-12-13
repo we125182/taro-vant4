@@ -64,8 +64,8 @@ const targetEl = ref<HTMLElement>();
 }
 
 .custom-back-top {
-  width: 80px;
-  font-size: 14px;
+  width: 80PX;
+  font-size: 14PX;
   text-align: center;
 }
 </style>

@@ -76,8 +76,8 @@ const offset = ref<FloatingBubbleOffset>({ x: 200, y: 400 });
 .demo-floating-bubble {
   .text {
     text-align: center;
-    padding: 100px 20px;
-    font-size: 14px;
+    padding: 100PX 20PX;
+    font-size: 14PX;
   }
 }
 </style>

@@ -95,22 +95,22 @@ const onFinish = () => showToast(t('finished'));
 
   .colon {
     display: inline-block;
-    margin: 0 4px;
+    margin: 0 4PX;
     color: var(--van-primary-color);
   }
 
   .block {
     display: inline-block;
-    width: 22px;
+    width: 22PX;
     color: #fff;
-    font-size: 12px;
+    font-size: 12PX;
     text-align: center;
     background-color: var(--van-primary-color);
-    border-radius: 4px;
+    border-radius: 4PX;
   }
 
   .van-grid {
-    margin-top: 10px;
+    margin-top: 10PX;
   }
 }
 </style>

@@ -127,13 +127,13 @@ const positions2 = ['top', 'center', 'bottom'] as const;
   }
 
   .van-col {
-    margin-bottom: 20px;
+    margin-bottom: 20PX;
   }
 
   .text {
-    margin-top: 5px;
+    margin-top: 5PX;
     color: var(--van-gray-7);
-    font-size: 14px;
+    font-size: 14PX;
     text-align: center;
   }
 }

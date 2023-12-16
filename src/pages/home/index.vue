@@ -4,10 +4,7 @@
       <demo-home></demo-home>
     </demo-section>
 
-    <page-container
-      :show="showPageContainer"
-      position="right"
-    >
+    <page-container :show="showPageContainer" position="right" @afterLeave="onAfterLeave">
       <div class="page-container">
         <demo-nav @back="showPageContainer = false" />
         <router-view v-slot="{ Component }">
@@ -22,61 +19,36 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { watch, ref, computed } from 'vue';
 import DemoNav from '@/components/DemoNav.vue';
 import DemoSection from '@/components/DemoSection.vue';
 import DemoHome from '@/components/DemoHome.vue';
 import { config } from '@/utils/site-mobile-shared';
-import { RouterView, useRoute } from 'vue-router';
- import Taro from '@tarojs/taro'
+import { RouterView, useRoute, useRouter } from 'vue-router';
+import Taro from '@tarojs/taro'
 
-export default {
-  components: {
-    DemoNav,
-    DemoSection,
-    RouterView,
-    DemoHome
-  },
+const route = useRoute()
+const router = useRouter()
+const showPageContainer = ref(false)
+const theme = ref('light')
+const themeClass = computed(() => {
+  return `van-doc-theme-${theme.value} van-theme-${theme.value}}`
+})
 
-  setup() {
-    const route = useRoute()
-    const showPageContainer = ref(false)
+watch(
+  () => route.path,
+  (val) => {
+    showPageContainer.value = val !== '/zh-CN'
+  }
+)
 
-    watch(
-      () => route.path,
-      (val) => {
-        showPageContainer.value = val !== '/zh-CN'
-      }
-    )
-    return {
-      showPageContainer
-    }
-    // const theme = ref('light')
-    // watch(
-    //   theme,
-    //   (newVal, oldVal) => {
-    //     document.documentElement.classList.remove(`van-doc-theme-${oldVal}`);
-    //     document.documentElement.classList.add(`van-doc-theme-${newVal}`);
-
-    //     const { darkModeClass, lightModeClass } = config.site;
-    //     if (darkModeClass) {
-    //       document.documentElement.classList.toggle(
-    //         darkModeClass,
-    //         newVal === 'dark',
-    //       );
-    //     }
-    //     if (lightModeClass) {
-    //       document.documentElement.classList.toggle(
-    //         lightModeClass,
-    //         newVal === 'light',
-    //       );
-    //     }
-    //   },
-    //   { immediate: true },
-    // );
-  },
-};
+function onAfterLeave() {
+  // 兼容支付宝小程序(返回按钮自带, DemoNav无法自定义)
+  if (process.env.TARO_ENV === 'alipay') {
+    router.replace('/zh-CN')
+  }
+}
 </script>
 
 <style lang="less">

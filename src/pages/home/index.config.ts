@@ -1,6 +1,3 @@
-export default {
+export default definePageConfig({
   navigationStyle: 'custom',
-  // transparentTitle: 'always',
-  // titlePenetrate: 'YES',
-  navigationBarTitleText: '',
-}
+})

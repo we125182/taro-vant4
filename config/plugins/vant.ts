@@ -25,7 +25,32 @@ export default function (ctx: IPluginContext) {
     return `van-${key}`
   })
 
+  ctx.onReady(() => {
+    const compiler  = ctx.compiler
+    if (compiler === 'webpack5' || compiler.type === 'webpack5') {
+      ctx.compiler = {
+        type: 'webpack5',
+        prebundle: {
+          ...compiler.prebundle,
+          exclude: (compiler.prebundle?.exclude || []).concat('vant')
+        }
+      }
+    }
+    // 声明单独分包的vant样式库, 全局样式才会导入
+    const commonChunks = ctx.initialConfig.mini!.commonChunks
+    if (Array.isArray(commonChunks)) {
+      commonChunks.push('vant')
+    } else {
+      ctx.initialConfig.mini!.commonChunks = (chunks) => {
+        chunks.push('vant')
+        return commonChunks ? commonChunks(chunks) : chunks
+      }
+    }
+  })
+
   ctx.modifyWebpackChain(({ chain }) => {
+    // 因taro自带的postcss插件不支持exclude配置, 使用自己的插件
+    // TODO: 考虑为taro的pxtransform插件添加exclude配置
     // vant样式不进行px转换
     const needPxPluginRules = ['normalCss', 'less']
     needPxPluginRules.forEach(ruleName => {

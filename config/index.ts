@@ -39,20 +39,12 @@ const config = defineConfig({
   },
   framework: 'vue3',
   compiler: {
-    type: 'webpack5',
-    prebundle: {
-      exclude: ['vant']
-    }
+    type: 'webpack5'
   },
   cache: {
     enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
   },
   mini: {
-    commonChunks(chunks) {
-      // 为了解决h5端vant组件样式问题，将vant组件样式单独打包
-      chunks.push('vant')
-      return chunks
-    },
     webpackChain (chain) {
       // vant按需引入
       chain.plugin('components').use(function() {

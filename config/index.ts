@@ -19,6 +19,7 @@ const config = defineConfig({
   plugins: [
     // 收集vant组件中使用到的原生组件
     resolve('config/plugins/vant.ts'),
+    resolve('config/plugins/mini-config.ts'),
     ['@tarojs/plugin-html', {
       modifyElements(inline: string[], block: string[]) {
         // i修改为view(默认为text)避免内部元素无法渲染问题

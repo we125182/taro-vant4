@@ -4,7 +4,7 @@
       <demo-home></demo-home>
     </demo-section>
 
-    <page-container :show="showPageContainer" position="right" @afterLeave="onAfterLeave">
+    <component :is="container.is" :show="showPageContainer" v-bind="container.props">
       <div class="page-container">
         <demo-nav @back="showPageContainer = false" />
         <router-view v-slot="{ Component }">
@@ -15,7 +15,7 @@
           </demo-section>
         </router-view>
       </div>
-    </page-container>
+    </component>
   </div>
 </template>
 
@@ -27,6 +27,7 @@ import DemoHome from '@/components/DemoHome.vue';
 import { config } from '@/utils/site-mobile-shared';
 import { RouterView, useRoute, useRouter } from 'vue-router';
 import Taro from '@tarojs/taro'
+import { Popup } from 'vant'
 
 const route = useRoute()
 const router = useRouter()
@@ -35,6 +36,27 @@ const theme = ref('light')
 const themeClass = computed(() => {
   return `van-doc-theme-${theme.value} van-theme-${theme.value}}`
 })
+
+const container = process.env.TARO_ENV === 'h5' ? {
+  is: Popup,
+  props: {
+    position: 'right',
+    duration: '0.3',
+    style: {
+      height: '100vh',
+      width: '100vw',
+      overflowY: 'auto',
+      backgroundColor: 'var(--van-doc-gray-1)',
+    },
+    onClosed: onAfterLeave
+  }
+} : {
+  is: 'page-container',
+  props: {
+    position: 'right',
+    onAfterLeave: onAfterLeave
+  }
+}
 
 watch(
   () => route.path,

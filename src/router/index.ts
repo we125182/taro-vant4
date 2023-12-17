@@ -1,9 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import DemoHome from '@/components/DemoHome.vue';
 import { decamelize } from '@/utils';
 import { demos, config } from '@/utils/site-mobile-shared';
 import { getLang, setDefaultLang } from '@/locale';
 import type { RouteRecordRaw } from 'vue-router';
+import Taro from '@tarojs/taro';
 
 const { locales, defaultLang } = config.site;
 
@@ -88,7 +89,51 @@ function getRoutes() {
   return routes;
 }
 
-export default createRouter({
-  history: createWebHistory(),
+const router = createRouter({
+  history: createWebHashHistory(),
   routes: getRoutes()
 });
+
+const MINI_NOT_SUPPORT_COMPONENT = [
+  'toast',
+  'calendar',
+  'date-picker',
+  'picker',
+  'picker-group',
+  'signature',
+  'time-picker',
+  'uploader',
+  'barrage',
+  'dropdown-menu',
+  'floating-bubble',
+  'notify',
+  'pull-refresh',
+  'circle',
+  'image-preview',
+  'lazyload',
+  'list',
+  'popover',
+  'progress',
+  'sticky',
+  'swipe',
+  'text-ellipsis',
+  'watermark',
+  'back-top',
+  'index-bar',
+  'address-edit',
+]
+
+router.beforeEach((to, _, next) => {
+  const path = to.path.split('/').pop() as string;
+  if (process.env.TARO_ENV !== 'h5' && MINI_NOT_SUPPORT_COMPONENT.includes(path)) {
+    Taro.showToast({
+      title: '小程序暂不支持该组件',
+      icon: 'none'
+    })
+    next(false);
+  } else {
+    next(true)
+  }
+})
+
+export default router

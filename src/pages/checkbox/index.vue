@@ -235,6 +235,7 @@ const checkedResultChange = (value: string[]) => {
 
   img {
     height: 20PX;
+    width: 20PX;
   }
 
   &-buttons {

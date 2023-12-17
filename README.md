@@ -4,7 +4,7 @@
 
 在 Taro 中使用有赞前端团队开源的移动端组件库[Vant](https://vant-contrib.gitee.io/vant/#/zh-CN/home)。
 
-`Vant` 官方示例：https://vant-contrib.gitee.io/vant/mobile.html#/zh-CN。
+`Vant` 官方示例：https://vant-contrib.gitee.io/vant/#/zh-CN。
 
 能直接兼容使用的组件大概为 **70%**，具体适配情况请见下文。
 
@@ -13,11 +13,9 @@
 ```bash
 # 安装 CLI
 npm i @tarojs/cli -g
-
 # 启动项目
 cd taro-vant4
 pnpm install
-
 pnpm run dev:weapp
 ```
 
@@ -27,30 +25,17 @@ pnpm run dev:weapp
 
 ### 1. 浏览器默认样式
 
-#### 方式一、开发者可以选择在全局引入浏览器的默认样式
-
-Taro 提供两种内置样式我们可以直接引入生效：
-
-- `@tarojs/taro/html.css`: W3C HTML4 的内置样式，只有 HTML4 标签样式，体积较小，兼容性强，能适应大多数情况。
-- `@tarojs/taro/html5.css`: Chrome(Blink) HTML5 的内置样式，内置样式丰富，包括了大多数 HTML5 标签，体积较大，不一定支持所有小程序容器。
-
-```js
-// app.css
-// html4
-import '@tarojs/taro/html.css';
-// html5
-import '@tarojs/taro/html5.css';
-```
-
-#### 方式二、只摘取部分需要的浏览器默认样式
-
-以往编写 H5 应用时，我们常常会写一些样式去重置浏览器默认样式。所以一般情况不需要引入，或者可以手动挑选必须的样式。
+因为小程序部分默认样式与浏览器不同, 可以手动加入一些调整样式。
 
 ```scss
-// app.css
-// 以下是为了适配 VantUI 项目所需要的默认样式
-.h5-span {
+//* #ifndef h5 */
+.h5-span,
+.h5-i {
   display: inline;
+}
+
+.h5-i {
+  font-style: normal;
 }
 
 .h5-button,
@@ -58,16 +43,52 @@ import '@tarojs/taro/html5.css';
   display: inline-block;
 }
 
-.h5-button::after {
+.h5-button {
+  margin: 0;
+}
+
+// button在小程序有默认样式，需要覆盖
+.h5-button:not(.van-button--hairline)::after {
   border: none;
 }
 
+// van-button细边框样式问题修正
 .van-button--hairline::after {
-  transform-origin: unset;
-  width: unset;
-  height: unset;
+  transform-origin: center;
 }
+
+// DatePicker控制区按钮文字垂直居中
+.van-haptics-feedback.h5-button {
+  line-height: var(--van-picker-toolbar-height);
+}
+
+// 魔改 tabs 样式
+.van-tabs__line {
+  display: none;
+}
+.van-tab.van-tab--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: var(--van-tabs-bottom-bar-width);
+  height: var(--van-tabs-bottom-bar-height);
+  background-color: var(--van-tabs-bottom-bar-color);
+  border-radius: var(--van-tabs-bottom-bar-height);
+}
+
+.van-swipe__track {
+  flex: 1;
+}
+/* #endif */
 ```
+
+> 或者使用Taro 提供两种内置样式, 直接引入生效：
+>
+> - `@tarojs/taro/html.css`: W3C HTML4 的内置样式，只有 HTML4 标签样式，体积较小，兼容性强，能适应大多数情况。
+> - `@tarojs/taro/html5.css`: Chrome(Blink) HTML5 的内置样式，内置样式丰富，包括了大多数 HTML5 标签，体积较大，不一定支持所有小程序容器。
 
 ### 2. 尺寸单位
 
@@ -78,19 +99,25 @@ Taro 默认会对开发者编写的尺寸进行转换：
 
 但是组件库一般按照 750px 设计稿的 1/2 编写尺寸，Taro 不需要再对组件库的尺寸进行转换。
 
-可以配置 `@tarojs/plugin-html` 的 `pxtransformBlackList` 选项进行过滤：
+通过自定义的postcss插件排除vant中样式文件以免被转换
 
-```js
-// config/index.js
-config = {
-  plugins: [
-    ['@tarojs/plugin-html', {
-      // 过滤 vant 组件库的前缀：van- ; 注意这里配置后,项目里要覆盖组件样式时van-开头的class中的px也不会转换
-      pxtransformBlackList: [/demo-/, /van-/]
-    }]
-  ]
-  // ...
-}
+```javascript
+// config/plugin/vant.js
+...
+ctx.modifyWebpackChain(({ chain }) => {
+...
+  const needPxPluginRules = ['normalCss', 'less']
+  needPxPluginRules.forEach(ruleName => {
+    chain.module.rule(ruleName).oneOf('0').use('2').tap(options => {
+      options.postcssOptions.plugins.push(require('postcss-transform-px')({
+        exclude: /[\\/]node_modules[\\/]vant/i
+      }))
+      return options
+    })
+  })
+...
+})
+...
 ```
 
 ### 3. SVG 图标
@@ -157,12 +184,12 @@ config = {
   position: absolute;
   bottom: 0;
   left: 50%;
-  margin-left: -20px;
+  transform: translateX(-50%);
   z-index: 1;
-  width: 40px;
-  height: 3px;
-  background-color: #ee0a24;
-  border-radius: 3px;
+  width: var(--van-tabs-bottom-bar-width);
+  height: var(--van-tabs-bottom-bar-height);
+  background-color: var(--van-tabs-bottom-bar-color);
+  border-radius: var(--van-tabs-bottom-bar-height);
 }
 ```
 
@@ -220,45 +247,52 @@ const Custom = {
 
 | 组件     | 是否支持 | 备注                                                          |
 | :------- | :------- | :------------------------------------------------------------ |
-| Button   | ✓       | 不能使用 SVG ICON, icon不支持图片                             |
+| Button   | ✓       | 不能使用 SVG ICON; 不支动画按钮;|
 | Cell     | ✓       |                                                               |
+| ConfigProvider     | ✓       |                                                               |
 | Icon     | ✓       |                                                               |
-| Image    | ✓       | 1. 不能使用 `Lazyload`。2. 各种 `object-fit` 样式会失效。 |
+| Image    | ✓       | 1. 不能使用 `lazy-load`。2. 各种 `object-fit` 样式会失效。 |
 | Row      | ✓       |                                                               |
 | Col      | ✓       |                                                               |
-| Popup    | ✓       | 必须设置 `duration` 属性; 不支持teleport属性                |
-| 内置样式 | ✓       | 动画的元素的 `style` 需要设置 `animationDuration`         |
+| Popup    | ✓       | 必须设置 `duration` 属性(`config/plugins/vant.ts`插件通过设置vue-loader已自动添加该属性); 不支持teleport属性                |
+| Space    | ✓       |         |
+| 内置样式  | ✓       | 动画的元素的 `style` 需要设置 `animationDuration`         |
 | Toast    | ✗       | 使用 `Taro.showToast` 代替                                  |
 
 ### 表单组件
 
 | 组件           | 是否支持 | 备注                                                                    |
 | :------------- | :------- | :---------------------------------------------------------------------- |
-| Calendar       | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                                  |
-| Cascader       | ✓       | `<van-tabs>` 的样式需要魔改                                           |
-| Checkbox       | ✓       |                                                                         |
+| Calendar       | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸|
+| Cascader       | ✗       | 因为没有开发animated属性,导致tab无法切换|
+| Checkbox       | ✓       |       |
 | DatetimePicker | -        | 使用小程序的 `<Picker>` 代替                                          |
-| Field          | ✓       | 清除按钮失效（`<Text>` 不会触发 `touchstart`）；不支持 `audosize` |
+| Field          | ✓       | 清除按钮失效（`<Text>` 不会触发 `touchstart`）；不支持 `audosize`, `clearable` |
 | Form           | ✓       | 某些表单组件不能使用；`<Switch>` 和 `<Slider>` 需要额外兼容         |
-| NumberKeyboard | ✓       | 不能使用 SVG ICON；过渡动画失效                                         |
-| PasswordInput  | ✓       |                                                                         |
-| Picker         | -        | 使用小程序的 `<Picker>` 代替                                          |
-| Radio          | ✓       |                                                                         |
-| Rate           | ✓       | 不支持手势滑动评分                                                      |
-| Search         | ✓       |                                                                         |
-| Slider         | -        | 使用小程序的 `<Slider>` 代替                                          |
-| Stepper        | ✓       | 注意 `<input>`； `<button>` 需要 `display: inline-block`          |
-| Switch         | -        | 使用小程序的 `<Switch>` 代替                                          |
-| Uploader       | ✗       | H5 与小程序上传文件的方式不同                                           |
+| NumberKeyboard | ✓       | 不能使用 SVG ICON；过渡动画失效     |
+| PasswordInput  | ✓       | 仅支持基础用法;其他有使用API获取DOM尺寸不支持   |
+| Picker         | -        | 使用小程序的 `<Picker>` 代替           |
+| Radio          | ✓       |        |
+| Rate           | ✓       | 不支持手势滑动评分             |
+| Search         | ✓       | 不支持`clearable`       |
+| Slider         | -        | 使用小程序的 `<Slider>` 代替      |
+| Signature       | ✗       | H5 与小程序上canvas不兼容 |
+| Stepper        | ✓       | 注意 `<input>`； `<button>` 需要 `display: inline-block`|
+| Switch         | -        | 使用小程序的 `<Switch>` 代替        |
+| TimePicker         | -        | 使用小程序的 `<Picker>` 代替           |
+| Uploader       | ✗       | H5 与小程序上传文件的方式不同 |
 
 ### 反馈组件
 
 | 组件         | 是否支持 | 备注                                                    |
 | :----------- | :------- | :------------------------------------------------------ |
 | ActionSheet  | ✓       | 必须设置 `duration` 属性；不能使用 SVG ICON           |
+| Barrage | ✗       | 不支持DOM操作               |
 | Dialog       | ✓       | 只能以组件形式调用；过渡效果部分丢失；不能使用 SVG ICON |
 | DropdownMenu | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
-| Loading      | ✓       | 不能使用 SVG ICON                                       |
+| FloatingPanel      | ✓       |      |
+| FloatingBubble     | ✗       |  不支持ref操作组件    |
+| Loading      | ✓       | 不能使用 SVG ICON     |
 | Notify       | ✗       | 不能在页面组件的 DOM 树之外插入元素                     |
 | Overlay      | ✓       | 必须设置 `duration` 属性                              |
 | PullRefresh  | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
@@ -275,23 +309,29 @@ const Custom = {
 | CountDown    | ✓       |                                                            |
 | Divider      | ✓       |                                                            |
 | Empty        | ✓       | 不能使用 SVG ICON                                          |
+| Highlight    | ✓       |                                                            |
 | ImagePreview | ✗       | 使用 `Taro.previewImage` 代替                            |
 | Lazyload     | ✗       |                                                            |
 | List         | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                     |
 | NoticeBar    | ✓       | 不支持滚动播放（不支持以浏览器的同步 API 获取 DOM 尺寸）   |
 | Popover      | ✗       | 不能在页面组件的 DOM 树之外插入元素                        |
 | Progress     | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                     |
+| RollingText  | ✓       |                                                            |
 | Skeleton     | ✓       |                                                            |
 | Steps        | ✓       |                                                            |
 | Sticky       | ✗       | 使用小程序的 `IntersectionObserver` 代替                 |
 | Swipe        | ✗       | 使用小程序的 `Swiper` 代替                               |
 | Tag          | ✓       |                                                            |
+| TextEllipsis | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                     |
+| Watermark    | ✗       | 不支持svg                     |
 
 ### 导航组件
 
 | 组件       | 是否支持 | 备注                                     |
 | :--------- | :------- | :--------------------------------------- |
-| Grid       | ✓       | 徽标失效（`<i>` 里不能嵌套 `<div>`） |
+| ActionBar  | ✓       |                                          |
+| BackTop    | ✗       | 不支持ref操作组件                                         |
+| Grid       | ✓       |  |
 | IndexBar   | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸   |
 | NavBar     | ✓       |                                          |
 | Pagination | ✓       |                                          |
@@ -304,14 +344,12 @@ const Custom = {
 
 | 组件        | 是否支持 | 备注                                                                                |
 | :---------- | :------- | :---------------------------------------------------------------------------------- |
-| AddressEdit | ✗       |                                                                                     |
-| AddressList | ✓       |                                                                                     |
-| Area        | -        | 使用小程序的 `<Picker>` 代替                                                      |
-| Card        | ✓       |                                                                                     |
-| ContactCard | ✓       |                                                                                     |
-| ContactEdit | ✗       | 删除按钮失效（不能在页面组件的 DOM 树之外插入元素）                                 |
-| ContactList | ✓       |                                                                                     |
-| Coupon      | ✓       | `<van-popup>` 必须设置 `duration` 属性；`<van-tabs>` 的样式需要魔改           |
-| GoodsAction | ✓       |                                                                                     |
-| SubmitBar   | ✓       |                                                                                     |
-| Sku         | ✗       | 按钮提示弹层不显示（不能在页面组件的 DOM 树之外插入元素）；留言区部分表单组件不支持 |
+| AddressEdit | ✗       |            |
+| AddressList | ✓       |            |
+| Area        | -        | 使用小程序的 `<Picker>` 代替            |
+| Card        | ✓       |            |
+| ContactCard | ✓       |            |
+| ContactEdit | ✓       | 删除按钮失效（不能在页面组件的 DOM 树之外插入元素）         |
+| ContactList | ✓       |            |
+| Coupon      | ✓       | `<van-popup>` 必须设置 `duration` 属性；`<van-tabs>` 的样式需要魔改 |
+| SubmitBar   | ✓       | 不支持svg         |

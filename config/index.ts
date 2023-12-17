@@ -109,6 +109,10 @@ const config = defineConfig({
       chain.plugin('components').use(function() {
         return ComponentsPlugin({ resolvers: [VantResolver()] })
       })
+      /**
+       * 输出webpack配置
+       */
+      require('fs').writeFileSync(path.resolve(`${process.env.TARO_ENV}.inspect.config.js`), 'module.exports = ' + chain.toString())
     }
   }
 })

@@ -1,9 +1,11 @@
 import { IPluginContext } from '@tarojs/service'
+import { ICompiler } from '@tarojs/taro/types/compile/compiler'
 import type { PlainElementNode } from '@vue/compiler-core'
 import type { Plugin } from 'postcss'
 
 export default function (ctx: IPluginContext) {
-  const miniTagMap = {
+  if (process.env.TARO_ENV === 'h5') return
+  const MINI_TAG_MAP = mapKeys({
     button: ['button'],
     field: ['input', 'textarea', 'label'],
     form: ['form'],
@@ -12,7 +14,7 @@ export default function (ctx: IPluginContext) {
     image: ['image'],
     search: ['input'],
     empty: ['image']
-  }
+  })
 
   const NEED_ADD_PROP_COMPONENT = mapKeys({
     'loading': {
@@ -21,18 +23,16 @@ export default function (ctx: IPluginContext) {
     'popup': {
       duration: '0.3'
     }
-  }, (_,key) => {
-    return `van-${key}`
   })
 
   ctx.onReady(() => {
-    const compiler  = ctx.compiler
-    if (compiler === 'webpack5' || compiler.type === 'webpack5') {
+    const compiler  = ctx.initialConfig.compiler
+    if (compiler && (compiler === 'webpack5' || (compiler as ICompiler).type === 'webpack5')) {
       ctx.compiler = {
         type: 'webpack5',
         prebundle: {
-          ...compiler.prebundle,
-          exclude: (compiler.prebundle?.exclude || []).concat('vant')
+          ...(compiler as ICompiler).prebundle,
+          exclude: ((compiler as ICompiler).prebundle?.exclude || []).concat('vant')
         }
       }
     }
@@ -49,9 +49,11 @@ export default function (ctx: IPluginContext) {
   })
 
   ctx.modifyWebpackChain(({ chain }) => {
-    // 因taro自带的postcss插件不支持exclude配置, 使用自己的插件
-    // TODO: 考虑为taro的pxtransform插件添加exclude配置
-    // vant样式不进行px转换
+    /**
+     * // TODO: 考虑为taro的pxtransform插件添加exclude配置
+     * 因taro自带的postcss插件不支持exclude配置, 使用自己的插件
+     * vant样式不进行px转换
+     */
     const needPxPluginRules = ['normalCss', 'less']
     needPxPluginRules.forEach(ruleName => {
       chain.module.rule(ruleName).oneOf('0').use('2').tap(options => {
@@ -113,8 +115,7 @@ export default function (ctx: IPluginContext) {
   ctx.onParseCreateElement(({ nodeName, componentConfig }) => {
     const includes = componentConfig.includes
     if (nodeName && nodeName.startsWith('van-')) {
-      const key = nodeName.substring(4)
-      const tags = miniTagMap[key] || []
+      const tags = MINI_TAG_MAP[nodeName] || []
       for (const tag of tags) {
         if (!includes.has(tag))
           includes.add(tag)
@@ -124,8 +125,8 @@ export default function (ctx: IPluginContext) {
 }
 
 function mapKeys(
-  obj: Record<string, Record<string, string | number>>,
-  cb: (value: unknown, key: string) => string
+  obj: Record<string, any>,
+  cb: (value: unknown, key: string) => string = (value, key) => `van-${key}`
 ) {
   return Object.keys(obj).reduce((acc, key) => {
     acc[cb(obj[key], key)] = obj[key]

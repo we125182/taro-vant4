@@ -9,10 +9,12 @@ export function showToast(title: string) {
 
 export const closeToast = Taro.hideToast
 
-export const showLoadingToast = (title: string) => {
-  Taro.showLoading({
+export const closeLoading = Taro.hideLoading
+
+export const showLoadingToast = (title?: string) => {
+  Taro.showLoading( title ?{
     title,
-  })
+  } : undefined)
 }
 
 export function showFailToast(title: string) {

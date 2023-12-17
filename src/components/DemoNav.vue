@@ -77,7 +77,7 @@ export default {
     text-transform: capitalize;
   }
 
-  &__back {
+  & &__back {
     position: absolute;
     top: 0;
     left: 0;

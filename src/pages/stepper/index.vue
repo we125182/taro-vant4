@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useTranslate } from '@/utils';
-import { closeToast, showLoadingToast } from '@/utils';
+import { closeLoading, showLoadingToast } from '@/utils';
 
 const t = useTranslate({
   'zh-CN': {
@@ -38,11 +38,11 @@ const stepperRound = ref(1);
 const disabledInput = ref(1);
 
 const beforeChange = () => {
-  showLoadingToast({ forbidClick: true });
+  showLoadingToast();
 
   return new Promise<boolean>((resolve) => {
     setTimeout(() => {
-      closeToast();
+      closeLoading();
       resolve(true);
     }, 500);
   });

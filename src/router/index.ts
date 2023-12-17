@@ -88,12 +88,10 @@ function getRoutes() {
 
   return routes;
 }
-
 const router = createRouter({
   history: createWebHashHistory(),
   routes: getRoutes()
 });
-
 const MINI_NOT_SUPPORT_COMPONENT = [
   'toast',
   'calendar',
@@ -123,7 +121,15 @@ const MINI_NOT_SUPPORT_COMPONENT = [
   'address-edit',
 ]
 
-router.beforeEach((to, _, next) => {
+router.beforeEach((to, from, next) => {
+  // 修复h5刷新白屏问题
+  if (from.path === '/' && to.path !== '/zh-CN' && process.env.TARO_ENV === 'h5') {
+    next('/zh-CN')
+    setTimeout(() => {
+      window.location.reload()
+    }, 50)
+    return
+  }
   const path = to.path.split('/').pop() as string;
   if (process.env.TARO_ENV !== 'h5' && MINI_NOT_SUPPORT_COMPONENT.includes(path)) {
     Taro.showToast({

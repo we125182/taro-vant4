@@ -84,6 +84,12 @@ const config = defineConfig({
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    router: {
+      mode: 'hash',
+      customRoutes: {
+        '/pages/home/index': ['/zh-CN', '/zh-CN/:id']
+      }
+    },
     postcss: {
       pxtransform: {
         enable: true,

@@ -29,7 +29,6 @@ export default {
   mounted() {
     getSystemInfo({
       success: (res) => {
-        console.log(res)
         const { statusBarHeight = 0, titleBarHeight, system } = res
         this.statusBarHeight = statusBarHeight + 'px'
         this.height = titleBarHeight

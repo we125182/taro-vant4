@@ -13,7 +13,8 @@ export default function (ctx: IPluginContext) {
     checkbox: ['checkbox'],
     image: ['image'],
     search: ['input'],
-    empty: ['image']
+    empty: ['image'],
+    popup: ['page-container']
   })
 
   const NEED_ADD_PROP_COMPONENT = mapKeys({

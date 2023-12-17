@@ -245,59 +245,59 @@ const Custom = {
 
 ### 基础组件
 
-| 组件     | 是否支持 | 备注                                                          |
-| :------- | :------- | :------------------------------------------------------------ |
-| Button   | ✓       | 不能使用 SVG ICON; 不支动画按钮;|
-| Cell     | ✓       |                                                               |
-| ConfigProvider     | ✓       |                                                               |
-| Icon     | ✓       |                                                               |
-| Image    | ✓       | 1. 不能使用 `lazy-load`。2. 各种 `object-fit` 样式会失效。 |
-| Row      | ✓       |                                                               |
-| Col      | ✓       |                                                               |
-| Popup    | ✓       | 必须设置 `duration` 属性(`config/plugins/vant.ts`插件通过设置vue-loader已自动添加该属性); 不支持teleport属性                |
-| Space    | ✓       |         |
-| 内置样式  | ✓       | 动画的元素的 `style` 需要设置 `animationDuration`         |
-| Toast    | ✗       | 使用 `Taro.showToast` 代替                                  |
+| 组件           | 是否支持 | 备注                                                                                                             |
+| :------------- | :------- | :--------------------------------------------------------------------------------------------------------------- |
+| Button         | ✓       | 不能使用 SVG ICON; 不支动画按钮;                                                                                 |
+| Cell           | ✓       |                                                                                                                  |
+| ConfigProvider | ✓       |                                                                                                                  |
+| Icon           | ✓       |                                                                                                                  |
+| Image          | ✓       | 1. 不能使用 `lazy-load`。2. 各种 `object-fit` 样式会失效。                                                   |
+| Row            | ✓       |                                                                                                                  |
+| Col            | ✓       |                                                                                                                  |
+| Popup          | ✓       | 必须设置 `duration` 属性(`config/plugins/vant.ts`插件通过设置vue-loader已自动添加该属性); 不支持teleport属性 |
+| Space          | ✓       |                                                                                                                  |
+| 内置样式       | ✓       | 动画的元素的 `style` 需要设置 `animationDuration`                                                            |
+| Toast          | ✗       | 使用 `Taro.showToast` 代替                                                                                     |
 
 ### 表单组件
 
-| 组件           | 是否支持 | 备注                                                                    |
-| :------------- | :------- | :---------------------------------------------------------------------- |
-| Calendar       | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸|
-| Cascader       | ✗       | 因为没有开发animated属性,导致tab无法切换|
-| Checkbox       | ✓       |       |
-| DatetimePicker | -        | 使用小程序的 `<Picker>` 代替                                          |
+| 组件           | 是否支持 | 备注                                                                                   |
+| :------------- | :------- | :------------------------------------------------------------------------------------- |
+| Calendar       | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                                                 |
+| Cascader       | ✗       | 因为没有开发animated属性,导致tab无法切换                                               |
+| Checkbox       | ✓       |                                                                                        |
+| DatetimePicker | -        | 使用小程序的 `<Picker>` 代替                                                         |
 | Field          | ✓       | 清除按钮失效（`<Text>` 不会触发 `touchstart`）；不支持 `audosize`, `clearable` |
-| Form           | ✓       | 某些表单组件不能使用；`<Switch>` 和 `<Slider>` 需要额外兼容         |
-| NumberKeyboard | ✓       | 不能使用 SVG ICON；过渡动画失效     |
-| PasswordInput  | ✓       | 仅支持基础用法;其他有使用API获取DOM尺寸不支持   |
-| Picker         | -        | 使用小程序的 `<Picker>` 代替           |
-| Radio          | ✓       |        |
-| Rate           | ✓       | 不支持手势滑动评分             |
-| Search         | ✓       | 不支持`clearable`       |
-| Slider         | -        | 使用小程序的 `<Slider>` 代替      |
-| Signature       | ✗       | H5 与小程序上canvas不兼容 |
-| Stepper        | ✓       | 注意 `<input>`； `<button>` 需要 `display: inline-block`|
-| Switch         | -        | 使用小程序的 `<Switch>` 代替        |
-| TimePicker         | -        | 使用小程序的 `<Picker>` 代替           |
-| Uploader       | ✗       | H5 与小程序上传文件的方式不同 |
+| Form           | ✓       | 某些表单组件不能使用；`<Switch>` 和 `<Slider>` 需要额外兼容                        |
+| NumberKeyboard | ✓       | 不能使用 SVG ICON；过渡动画失效                                                        |
+| PasswordInput  | ✓       | 仅支持基础用法;其他有使用API获取DOM尺寸不支持                                          |
+| Picker         | -        | 使用小程序的 `<Picker>` 代替                                                         |
+| Radio          | ✓       |                                                                                        |
+| Rate           | ✓       | 不支持手势滑动评分                                                                     |
+| Search         | ✓       | 不支持 `clearable`                                                                   |
+| Slider         | -        | 使用小程序的 `<Slider>` 代替                                                         |
+| Signature      | ✗       | H5 与小程序上canvas不兼容                                                              |
+| Stepper        | ✓       | 注意 `<input>`； `<button>` 需要 `display: inline-block`                         |
+| Switch         | -        | 使用小程序的 `<Switch>` 代替                                                         |
+| TimePicker     | -        | 使用小程序的 `<Picker>` 代替                                                         |
+| Uploader       | ✗       | H5 与小程序上传文件的方式不同                                                          |
 
 ### 反馈组件
 
-| 组件         | 是否支持 | 备注                                                    |
-| :----------- | :------- | :------------------------------------------------------ |
-| ActionSheet  | ✓       | 必须设置 `duration` 属性；不能使用 SVG ICON           |
-| Barrage | ✗       | 不支持DOM操作               |
-| Dialog       | ✓       | 只能以组件形式调用；过渡效果部分丢失；不能使用 SVG ICON |
-| DropdownMenu | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
-| FloatingPanel      | ✓       |      |
-| FloatingBubble     | ✗       |  不支持ref操作组件    |
-| Loading      | ✓       | 不能使用 SVG ICON     |
-| Notify       | ✗       | 不能在页面组件的 DOM 树之外插入元素                     |
-| Overlay      | ✓       | 必须设置 `duration` 属性                              |
-| PullRefresh  | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
-| ShareSheet   | ✓       | 必须设置 `duration` 属性                              |
-| SwipeCell    | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
+| 组件           | 是否支持 | 备注                                                    |
+| :------------- | :------- | :------------------------------------------------------ |
+| ActionSheet    | ✓       | 必须设置 `duration` 属性；不能使用 SVG ICON           |
+| Barrage        | ✗       | 不支持DOM操作                                           |
+| Dialog         | ✓       | 只能以组件形式调用；过渡效果部分丢失；不能使用 SVG ICON |
+| DropdownMenu   | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
+| FloatingPanel  | ✓       |                                                         |
+| FloatingBubble | ✗       | 不支持ref操作组件                                       |
+| Loading        | ✓       | 不能使用 SVG ICON                                       |
+| Notify         | ✗       | 不能在页面组件的 DOM 树之外插入元素                     |
+| Overlay        | ✓       | 必须设置 `duration` 属性                              |
+| PullRefresh    | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
+| ShareSheet     | ✓       | 必须设置 `duration` 属性                              |
+| SwipeCell      | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                  |
 
 ### 展示组件
 
@@ -323,33 +323,41 @@ const Custom = {
 | Swipe        | ✗       | 使用小程序的 `Swiper` 代替                               |
 | Tag          | ✓       |                                                            |
 | TextEllipsis | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸                     |
-| Watermark    | ✗       | 不支持svg                     |
+| Watermark    | ✗       | 不支持svg                                                  |
 
 ### 导航组件
 
-| 组件       | 是否支持 | 备注                                     |
-| :--------- | :------- | :--------------------------------------- |
-| ActionBar  | ✓       |                                          |
-| BackTop    | ✗       | 不支持ref操作组件                                         |
-| Grid       | ✓       |  |
-| IndexBar   | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸   |
-| NavBar     | ✓       |                                          |
-| Pagination | ✓       |                                          |
-| Sidebar    | ✓       |                                          |
-| Tab        | ✓       | `line` 风格需要对样式进行魔改          |
-| Tabbar     | ✓       |                                          |
-| TreeSelect | ✓       |                                          |
+| 组件       | 是否支持 | 备注                                   |
+| :--------- | :------- | :------------------------------------- |
+| ActionBar  | ✓       |                                        |
+| BackTop    | ✗       | 不支持ref操作组件                      |
+| Grid       | ✓       |                                        |
+| IndexBar   | ✗       | 不支持以浏览器的同步 API 获取 DOM 尺寸 |
+| NavBar     | ✓       |                                        |
+| Pagination | ✓       |                                        |
+| Sidebar    | ✓       |                                        |
+| Tab        | ✓       | `line` 风格需要对样式进行魔改        |
+| Tabbar     | ✓       |                                        |
+| TreeSelect | ✓       |                                        |
 
 ### 业务组件
 
-| 组件        | 是否支持 | 备注                                                                                |
-| :---------- | :------- | :---------------------------------------------------------------------------------- |
-| AddressEdit | ✗       |            |
-| AddressList | ✓       |            |
-| Area        | -        | 使用小程序的 `<Picker>` 代替            |
-| Card        | ✓       |            |
-| ContactCard | ✓       |            |
-| ContactEdit | ✓       | 删除按钮失效（不能在页面组件的 DOM 树之外插入元素）         |
-| ContactList | ✓       |            |
+| 组件        | 是否支持 | 备注                                                                      |
+| :---------- | :------- | :------------------------------------------------------------------------ |
+| AddressEdit | ✗       |                                                                           |
+| AddressList | ✓       |                                                                           |
+| Area        | -        | 使用小程序的 `<Picker>` 代替                                            |
+| Card        | ✓       |                                                                           |
+| ContactCard | ✓       |                                                                           |
+| ContactEdit | ✓       | 删除按钮失效（不能在页面组件的 DOM 树之外插入元素）                       |
+| ContactList | ✓       |                                                                           |
 | Coupon      | ✓       | `<van-popup>` 必须设置 `duration` 属性；`<van-tabs>` 的样式需要魔改 |
-| SubmitBar   | ✓       | 不支持svg         |
+| SubmitBar   | ✓       | 不支持svg                                                                 |
+
+## 代办
+
+* [ ] 为上述不支持的组件新增一个适配库以兼容小程序(类似 `NutUI`)
+* [ ] 为上述组件库新增 `unplugin-vue-component` 的resolver, 根据当前编译环境, 加载不同组件
+* [ ] 将taro-vant, taro-mini-config插件拆分上传npm
+* [ ] postcss-transform-px插件迭代以支持postcss8
+* [ ] 为Taro的postcss-pxtransform插件提交exclude的PR

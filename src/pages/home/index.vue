@@ -3,7 +3,6 @@
     <demo-section>
       <demo-home></demo-home>
     </demo-section>
-
     <component :is="container.is" :show="showPageContainer" v-bind="container.props">
       <div class="page-container">
         <demo-nav @back="showPageContainer = false" />
